@@ -3,10 +3,9 @@ using BackgroundJobs.Abstract;
 using Business.Abstract;
 using Business.Configuration.Extensions;
 using Business.Configuration.Response;
-using Business.Configuration.Validator.FluentValidation.ApartmentValidator;
+using Business.Configuration.Validator.FluentValidation.Apartment;
 using DAL.Abstract;
 using DTO.Apartment;
-using FluentValidation;
 using Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ApartmentService : IApartmentService
+    public class ApartmentService:IApartmentService
     {
         private readonly IApartmentRepository _apartmentRepository;
         private IMapper _mapper;
@@ -33,7 +32,7 @@ namespace Business.Concrete
         {
             var validator = new DeleteApartmentRequestValidator();
             validator.Validate(apartment).ThrowIfException();
-            var entity = _mapper.Map<Apartment>(apartment);
+            var entity = _mapper.Map<Home>(apartment);
 
             _apartmentRepository.Delete(entity);
             _apartmentRepository.SaveChanges();
@@ -41,29 +40,29 @@ namespace Business.Concrete
             {
                 Status = true,
                 Messsage = "Apartman Silindi",
-               
+
             };
         }
 
-        public IEnumerable<Apartment> GetAll( )
+        public IEnumerable<Home> GetAll()
         {
-           
+
             return _apartmentRepository.GetAll();
         }
 
         public CommandResponse Insert(CreateApartmentRequest apartment)
         {
-            var validator = new CreateApartmentRaquestValidator();
+            var validator = new CreateApartmentRequestValidator();
             validator.Validate(apartment).ThrowIfException();
-            var entity = _mapper.Map<Apartment>(apartment);
-            
+            var entity = _mapper.Map<Home>(apartment);
+
             _apartmentRepository.Add(entity);
             _apartmentRepository.SaveChanges();
             return new CommandResponse
             {
                 Status = true,
                 Messsage = $"Daire Eklendi",
-               
+
             };
         }
 

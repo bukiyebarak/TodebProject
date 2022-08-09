@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Concrete.EF
 {
-    public class EFApartmentRepository: EFBaseRepository<Home, TodebDbContext>, IApartmentRepository
+    public class EFBillRepository: EFBaseRepository<Bill, TodebDbContext>,IBillRepository
     {
-        public EFApartmentRepository(TodebDbContext context) : base(context)
+        public EFBillRepository(TodebDbContext context) : base(context)
         {
 
         }

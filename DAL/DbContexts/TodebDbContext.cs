@@ -16,7 +16,7 @@ namespace DAL.DbContexts
         public DbSet<User> Users { get; set; }
         
         public DbSet<UserPassword> UserPasswords { get; set; }
-        public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Home> Homes { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Image> Images { get; set; }

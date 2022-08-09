@@ -4,14 +4,16 @@ using DAL.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(TodebDbContext))]
-    partial class TodebDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220808213608_AddHome")]
+    partial class AddHome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +45,8 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Bills");
                 });
@@ -227,8 +230,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("Models.Entities.Bill", b =>
                 {
                     b.HasOne("Models.Entities.User", "User")
-                        .WithMany("Bill")
-                        .HasForeignKey("UserId")
+                        .WithOne("Bill")
+                        .HasForeignKey("Models.Entities.Bill", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

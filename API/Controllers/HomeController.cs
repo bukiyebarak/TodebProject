@@ -2,7 +2,6 @@
 using DTO.Apartment;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,22 +11,21 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApartmentController : ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly IApartmentService _service;
 
-        public ApartmentController(IApartmentService apartmentService)
+        public HomeController(IApartmentService apartmentService)
         {
             _service = apartmentService;
         }
-      
+
         [HttpGet]
         public IActionResult Get()
         {
             var data = _service.GetAll();
             return Ok(data);
         }
-
 
         [HttpPost]
         public IActionResult Post(CreateApartmentRequest apartment)
@@ -37,9 +35,9 @@ namespace API.Controllers
         }
 
 
-        
+
         [HttpPut]
-        public IActionResult Put( UpdateApartmentRequest apartment)
+        public IActionResult Put(UpdateApartmentRequest apartment)
         {
             var response = _service.Update(apartment);
             return Ok(response);

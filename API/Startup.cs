@@ -60,6 +60,13 @@ namespace API
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentService, ApartmentService>();
             services.AddScoped<IApartmentRepository, EFApartmentRepository>();
+
+            services.AddScoped<IBillService, BillService>();
+            services.AddScoped<IBillRepository, EFBillRepository>();
+
+
+
+
             //Token ayarlarý
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<Business.Configuration.Auth.TokenOption>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -112,6 +119,7 @@ namespace API
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
                     {

@@ -11,7 +11,7 @@ namespace Business.Abstract
 {
     public interface IApartmentService
     {
-        public IEnumerable<Apartment> GetAll();
+        public IEnumerable<Home> GetAll();
         public CommandResponse Insert(CreateApartmentRequest apartment);
         public CommandResponse Update(UpdateApartmentRequest apartment);
         public CommandResponse Delete(DeleteApartmentRequest apartment);

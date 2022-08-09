@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Configuration.Validator.FluentValidation.ApartmentValidator
+namespace Business.Configuration.Validator.FluentValidation.Apartment
 {
-    public class UpdateApartmentRequestValidator : AbstractValidator<UpdateApartmentRequest>
+    public class UpdateApartmentRequestValidator:AbstractValidator<UpdateApartmentRequest>
     {
         public UpdateApartmentRequestValidator()
         {

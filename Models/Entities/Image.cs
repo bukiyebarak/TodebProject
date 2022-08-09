@@ -12,11 +12,11 @@ namespace Models.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int ApartmentId { get; set; }
+        public int HomeId { get; set; }
         public string Title { get; set; }
         public string Picture { get; set; }
 
-        [ForeignKey("ApartmentId")]
-        public Apartment Apartment { get; set; }
+        [ForeignKey("HomeId")]
+        public Home Apartment { get; set; }
     }
 }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Abstract
 {
-    public interface IApartmentRepository: IEFBaseRepository<Apartment>
+    //IApartmentRepository'i IEFBaseRepository'den implement edildi. Böylece Ekleme silme vb. gibi özellikler IEFBaseRepositroy'den enjekte olacak.
+    public interface IApartmentRepository:IEFBaseRepository<Home>
     {
-        Apartment GetUser(int userId);
     }
 }

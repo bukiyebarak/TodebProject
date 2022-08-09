@@ -48,6 +48,7 @@ namespace Business.Concrete
             var entity = _mapper.Map<Order>(order);
 
             _orderRepository.Add(entity);
+            _orderRepository.SaveChanges();
 
             _jobs.DelayedJob(entity.Id, entity.Name, TimeSpan.FromSeconds(15));
             return new CommandResponse
@@ -74,6 +75,7 @@ namespace Business.Concrete
             var mappedEntity = _mapper.Map(order, entity);
 
             _orderRepository.Update(mappedEntity);
+            _orderRepository.SaveChanges();
 
             //if (valid.IsValid == false)
             //{

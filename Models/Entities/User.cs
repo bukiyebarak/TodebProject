@@ -18,6 +18,6 @@ namespace Models.Entities
         public string LicensePlateNumber { get; set; }
         public UserRole Role { get; set; }
         public UserPassword Password { get; set; }
-        public Bill Bill { get; set; }
+        public IEnumerable<Bill> Bill { get; set; }
     }
 }

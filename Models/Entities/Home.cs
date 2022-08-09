@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models.Entities
 {
-    public class Apartment
+    public class Home
     {
         [Key]
         public int Id { get; set; }
@@ -21,6 +21,7 @@ namespace Models.Entities
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
         public Image Image { get; set; }
     }
 }
