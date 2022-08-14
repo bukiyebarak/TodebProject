@@ -9,6 +9,7 @@ namespace BackgroundJobs.Abstract
     public interface IJobs
     {
         void DelayedJob(int userId, string userName,TimeSpan timeSpan);
+        void ReccuringJob();
         void FireAndForget(int userId, string userName);
     }
 }

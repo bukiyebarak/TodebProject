@@ -1,15 +1,11 @@
 ﻿using Business.Abstract;
 using DTO.Bill;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BillController : ControllerBase
@@ -21,6 +17,8 @@ namespace API.Controllers
             _service = service;
         }
 
+        //tüm kullanılacılara erişim izni verilir.
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
@@ -35,7 +33,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
-
+      
         [HttpPut]
         public IActionResult Put(UpdateBillRequest  bill)
         {
@@ -49,5 +47,7 @@ namespace API.Controllers
             var response = _service.Delete(bill);
             return Ok(response);
         }
+
+        
     }
 }

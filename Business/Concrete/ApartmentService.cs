@@ -46,7 +46,6 @@ namespace Business.Concrete
 
         public IEnumerable<Home> GetAll()
         {
-
             return _apartmentRepository.GetAll();
         }
 

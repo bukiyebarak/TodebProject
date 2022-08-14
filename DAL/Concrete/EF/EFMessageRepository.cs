@@ -10,14 +10,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Concrete.EF
 {
-    public class EFOrderRepository : EFBaseRepository<Order,TodebDbContext>,IOrderRepository
-    {       
-        
-        public EFOrderRepository(TodebDbContext context):base(context)
+    public class EFMessageRepository : EFBaseRepository<Message, TodebDbContext>, IMessageRepository
+    {
+        public EFMessageRepository(TodebDbContext context) : base(context)
         {
-            
         }
-
-        
     }
 }

@@ -67,6 +67,12 @@ namespace Business.Concrete
             };
         }
 
+        public string Get(User user)
+        {
+            var data = _billRepository.Get(x => x.UserId == user.Id);
+            return data.User.Name+data.User.Surname;
+        }
+
         public CommandResponse Update(UpdateBillRequest bill)
         {
             var validator = new UpdateBillRequestValidator();

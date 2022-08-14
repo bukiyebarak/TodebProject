@@ -15,5 +15,6 @@ namespace Business.Abstract
         public CommandResponse Insert(CreateBillRequest bill);
         public CommandResponse Update(UpdateBillRequest bill);
         public CommandResponse Delete(DeleteBillRequest bill);
+        public string Get(User user);
     }
 }

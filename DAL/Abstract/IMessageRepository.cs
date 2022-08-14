@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Abstract
 {
-    public interface IOrderRepository:IEFBaseRepository<Order>
+    public interface IMessageRepository: IEFBaseRepository<Message>
     {
-        
     }
 }

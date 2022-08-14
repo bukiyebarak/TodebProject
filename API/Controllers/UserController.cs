@@ -14,6 +14,7 @@ namespace API.Controllers
         {
             _userService = userService;
         }
+
         [HttpPost("Register")]
         public IActionResult Register(CreateUserRegisterRequest register)
         {

@@ -14,6 +14,7 @@ namespace DAL.EFBase
         IEnumerable<T> GetAll(Expression<Func<T, bool>> expression = null);
         void Delete(T entity);
         T Get(Expression<Func<T, bool>> expression);
+       
         void SaveChanges();
     }
 }

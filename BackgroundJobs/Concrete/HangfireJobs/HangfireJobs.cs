@@ -21,5 +21,11 @@ namespace BackgroundJobs.Concrete.HangfireJobs
         {
             Hangfire.BackgroundJob.Enqueue(() => _sendMailService.SendMail(userId, userName));
         }
+
+
+        public void ReccuringJob()
+        {
+            Console.WriteLine($"Recurring job örneği {DateTime.Now}");
+        }
     }
 }

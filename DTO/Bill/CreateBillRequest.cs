@@ -8,7 +8,6 @@ namespace DTO.Bill
 {
     public class CreateBillRequest
     {
-        
         public int UserId { get; set; }
         public float Electricity { get; set; }
         public float Water { get; set; }

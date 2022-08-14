@@ -3,9 +3,11 @@ using BackgroundJobs.Concrete;
 using BackgroundJobs.Concrete.HangfireJobs;
 using Business.Abstract;
 using Business.Concrete;
+using Business.Configuration.Cache;
 using Business.Configuration.Mapper;
 using DAL.Abstract;
 using DAL.Concrete.EF;
+using DAL.Concrete.MongoDB;
 using DAL.DbContexts;
 using DAL.EFBase;
 using Hangfire;
@@ -18,6 +20,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,18 +45,45 @@ namespace API
             //middleware
             services.AddDbContext<TodebDbContext>(ServiceLifetime.Transient);
 
+
+            //mongoDb
+           
+
+            #region Cache
+            //Redis NoSql bir veri tabanýdýr.
+            //distributed cache için redis impelemetasyonu yapýldý. RedisEndPointInfo ile RedisTen alýnan bilgiler eþleþtirildi.
+            var redisConfigInfo = Configuration.GetSection("RedisEndpointInfo").Get<RedisEndpointInfo>();
+          
+            services.AddStackExchangeRedisCache(opt =>
+            {
+                opt.ConfigurationOptions = new ConfigurationOptions()
+                {
+                    EndPoints =
+                    {
+                        { redisConfigInfo.EndPoint, redisConfigInfo.Port }
+                    },
+                    Password = redisConfigInfo.Password,
+                    User = redisConfigInfo.UserName
+
+                };
+            });
+            //local cache kullanýmý
+            //Inmemory Ramde tutulur.
+            services.AddMemoryCache();
+
+            #endregion
+
+            //mongo db
+            services.AddSingleton<MongoClient>(x => new MongoClient("mongodb://localhost:27017"));
+           
+
+
+            //Mapper iþlemleri için servise MapperProfile eklendi.
             services.AddAutoMapper(config =>
             {
                 config.AddProfile(new MapperProfile());
             });
 
-            var companyName = Configuration.GetValue<string>("CompanyName");
-            if (companyName == "Defacto")
-                services.AddScoped<IOrderService, DefactoOrderService>();
-            else
-                services.AddScoped<IOrderService, OrderService>();
-
-            services.AddScoped<IOrderRepository, EFOrderRepository>();
             services.AddScoped<IJobs, HangfireJobs>();
             services.AddScoped<ISendMailService, SendMailService>();
             services.AddScoped<IUserRepository, EFUserRepository>();
@@ -60,10 +91,13 @@ namespace API
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentService, ApartmentService>();
             services.AddScoped<IApartmentRepository, EFApartmentRepository>();
-
             services.AddScoped<IBillService, BillService>();
             services.AddScoped<IBillRepository, EFBillRepository>();
-
+            services.AddScoped<ICacheExample, CacheExample>();
+            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+            services.AddScoped<ICreditCardService, CreditCardService>();
+            services.AddScoped<IMessageRepository, EFMessageRepository>();
+            services.AddScoped<IMessageService, MessageService>();
 
 
 
@@ -156,6 +190,8 @@ namespace API
             {
 
             });
+
+            RecurringJob.AddOrUpdate<IJobs>(x => x.ReccuringJob(), Cron.Daily);
 
             app.UseRouting();
 

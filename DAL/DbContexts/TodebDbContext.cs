@@ -11,8 +11,7 @@ namespace DAL.DbContexts
         {
             _configuration = configuration;
         }
-       public DbSet<Order> Orders { get; set; }
-       
+     
         public DbSet<User> Users { get; set; }
         
         public DbSet<UserPassword> UserPasswords { get; set; }

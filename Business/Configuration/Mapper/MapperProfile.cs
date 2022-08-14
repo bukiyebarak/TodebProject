@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
 using DTO.Apartment;
 using DTO.Bill;
-using DTO.Order;
+using DTO.Message;
 using DTO.User;
 using Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Configuration.Mapper
 {
@@ -16,8 +11,7 @@ namespace Business.Configuration.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<CreateOrderRequest, Order>();
-            CreateMap<UpdateOrderRequest, Order>();
+           
             CreateMap<CreateUserRegisterRequest, User>();
             CreateMap<CreateApartmentRequest, Home>();
             CreateMap<UpdateApartmentRequest, Home>();
@@ -25,6 +19,8 @@ namespace Business.Configuration.Mapper
             CreateMap<CreateBillRequest, Bill>();
             CreateMap<UpdateBillRequest, Bill>();
             CreateMap<DeleteBillRequest, Bill>();
+            CreateMap<CreateMessageRequest, Message>();
+            CreateMap<DeleteMessageRequest, Message>();
         }
     }
 }
