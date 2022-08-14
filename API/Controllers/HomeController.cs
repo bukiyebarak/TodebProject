@@ -1,11 +1,6 @@
 ﻿using Business.Abstract;
 using DTO.Apartment;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -33,8 +28,6 @@ namespace API.Controllers
             var response = _service.Insert(apartment);
             return Ok(response);
         }
-
-
 
         [HttpPut]
         public IActionResult Put(UpdateApartmentRequest apartment)

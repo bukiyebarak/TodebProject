@@ -4,6 +4,7 @@ using DTO.Bill;
 using DTO.Message;
 using DTO.User;
 using Models.Entities;
+using System.Linq;
 
 namespace Business.Configuration.Mapper
 {
@@ -12,7 +13,7 @@ namespace Business.Configuration.Mapper
         public MapperProfile()
         {
            
-            CreateMap<CreateUserRegisterRequest, User>();
+            
             CreateMap<CreateApartmentRequest, Home>();
             CreateMap<UpdateApartmentRequest, Home>();
             CreateMap<DeleteApartmentRequest, Home>();
@@ -20,7 +21,13 @@ namespace Business.Configuration.Mapper
             CreateMap<UpdateBillRequest, Bill>();
             CreateMap<DeleteBillRequest, Bill>();
             CreateMap<CreateMessageRequest, Message>();
-            CreateMap<DeleteMessageRequest, Message>();
+            CreateMap<DeleteMessageRequest, Message>(); 
+            CreateMap<CreateUserRegisterRequest, User>().ForMember(x => x.Permissions,
+                a => a.MapFrom(c => c.UserPermissions.Select(b =>
+                    new UserPermission()
+                    {
+                        Permission = b
+                    })));
         }
     }
 }

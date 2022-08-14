@@ -14,7 +14,8 @@ namespace DTO.User
         public string UserPassword { get; set; }
         public string ConfirmPassword { get; set; }
         public UserRole Role { get; set; }
+        public IEnumerable<Permission> UserPermissions { get; set; }
 
-       
+
     }
 }

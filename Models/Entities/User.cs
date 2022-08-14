@@ -19,5 +19,8 @@ namespace Models.Entities
         public UserRole Role { get; set; }
         public UserPassword Password { get; set; }
         public IEnumerable<Bill> Bill { get; set; }
+
+        //Bir kullanıcının birden fazla yetkisi olacağı için ICollection olarak verildi
+        public ICollection<UserPermission> Permissions { get; set; }
     }
 }

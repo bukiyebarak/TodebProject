@@ -19,6 +19,7 @@ namespace DAL.DbContexts
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<UserPermission> UserPermissions { get; set; }
 
 
 

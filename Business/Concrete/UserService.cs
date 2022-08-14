@@ -33,13 +33,12 @@ namespace Business.Concrete
 
         public CommandResponse Register(CreateUserRegisterRequest register)
         {
-            //validasyonlar yazılacak
             var validator = new CreateUserRegisterRequestValidator();
             validator.Validate(register).ThrowIfException();
 
             var entity = _userRepository.Get(x => x.Email == register.Email);
-           
-            //var mappedEntity = _mapper.Map(register, entity);
+
+          
 
             byte[] passwordHash, passwordSalt;
             HashHelper.CreatePasswordHash(register.UserPassword, out passwordHash, out passwordSalt);
@@ -51,6 +50,12 @@ namespace Business.Concrete
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
+   
+            //IEnumerable ICollection'ın base sınıfı olduğu için ToList'e çevrildi. Userda bulunan izinler çekildi.
+            //user.Permissions = register.UserPermissions.Select(x => new UserPermission()
+            //{
+            //    Permission = x
+            //}).ToList();
 
             _userRepository.Add(user);
             _userRepository.SaveChanges();

@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundJobs", "Backgroun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache", "Cache\Cache.csproj", "{5C302BA8-F165-4744-B5FB-837239061E1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{714CF117-479C-4A1C-8997-4D40241412EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5C302BA8-F165-4744-B5FB-837239061E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C302BA8-F165-4744-B5FB-837239061E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C302BA8-F165-4744-B5FB-837239061E1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714CF117-479C-4A1C-8997-4D40241412EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714CF117-479C-4A1C-8997-4D40241412EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714CF117-479C-4A1C-8997-4D40241412EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714CF117-479C-4A1C-8997-4D40241412EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
