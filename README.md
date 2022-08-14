@@ -1,2 +1,2 @@
-# TodebProje
+# TodebProject
 TODEB Bitirme Projesi
