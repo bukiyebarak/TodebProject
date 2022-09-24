@@ -39,7 +39,6 @@ namespace Business.Concrete
             var entity = _userRepository.Get(x => x.Email == register.Email);
 
           
-
             byte[] passwordHash, passwordSalt;
             HashHelper.CreatePasswordHash(register.UserPassword, out passwordHash, out passwordSalt);
 

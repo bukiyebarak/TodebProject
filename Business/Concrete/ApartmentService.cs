@@ -57,6 +57,10 @@ namespace Business.Concrete
 
             _apartmentRepository.Add(entity);
             _apartmentRepository.SaveChanges();
+
+            _jobs.FireAndForget(entity.Id, entity.Floor);
+            _jobs.DelayedJob(entity.Id, entity.Floor, TimeSpan.FromSeconds(15));
+
             return new CommandResponse
             {
                 Status = true,

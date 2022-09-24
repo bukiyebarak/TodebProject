@@ -100,7 +100,6 @@ namespace API
             services.AddScoped<IMessageService, MessageService>();
 
 
-
             //Token ayarlarý
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<Business.Configuration.Auth.TokenOption>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
